@@ -5,6 +5,7 @@
     <div class="user-info">
       <button id="left">Log In</button>
       <button id="right">Sign Up</button>
+      <div data-netlify-identity-menu></div>
     </div>
 
     <div class="corgi-content">
@@ -28,7 +29,11 @@
 import netlifyIdentity from "netlify-identity-widget";
 import { mapActions, mapState } from "vuex";
 
-netlifyIdentity.init();
+if (process.client) {
+    netlifyIdentity.init()
+}
 
-export default {}
+export default {
+ 
+}
 </script>
