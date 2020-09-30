@@ -32,7 +32,7 @@ export default {
       jcontent: ''
     }
   },
-  async created(){
+  async mounted(){
 
     this.jcontent = await this.$axios.$post('https://digiz.netlify.app/.netlify/functions/get-protected-content',
     {
