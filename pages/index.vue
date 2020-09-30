@@ -34,11 +34,12 @@ export default {
   },
   async mounted(){
 
-    this.jcontent = await this.$axios.$post('https://digiz.netlify.app/.netlify/functions/get-protected-content',
+    await this.$axios.$post('https://digiz.netlify.app/.netlify/functions/get-protected-content',
     {
       type: 'jack'
     }) 
     .then(function (response) {
+      this.jcontent = response
       console.log(response);
     })
     .catch(function (error) {
