@@ -2,6 +2,7 @@
   <div>
 
     <jheader />
+    <button @click='managesub'>Manage Subscription</button>
     <h2>Content</h2>
     {{ jcontent }}
 
@@ -38,6 +39,25 @@ export default {
         }) 
     }
   },
+  methods:{
+    async managesub(){
+      if (this.$store.state.user.currentUser){
+        
+          await this.$axios.$post('https://digiz.netlify.app/.netlify/functions/create-manage-link','',{
+                headers:{
+                        Authorization: 'Bearer '+this.$store.state.user.currentUser.token.access_token
+                }
+          })
+          .then( r => {
+               window.location.href = r
+          })
+          .catch( err => {
+                alert('err!')
+                console.log(err)
+          })
+      }
+    }
+  }
 
 }
 
