@@ -42,14 +42,10 @@ const content = {
   
   exports.handler = async (event) => {
     const { type } = JSON.parse(event.body);
+
   
     return {
       statusCode: 200,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers':
-          'Origin, X-Requested-With, Content-Type, Accept',
-      },
       body: JSON.stringify(content[type]),
     };
   };

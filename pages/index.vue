@@ -29,17 +29,17 @@ export default {
   },
   data(){
     return{
-      jcontent: ''
+      jcontent: 'default'
     }
   },
   async mounted(){
 
     await this.$axios.$post('https://digiz.netlify.app/.netlify/functions/get-protected-content',
     {
-      type: 'jack'
+      type: "jack"
     }) 
     .then(function (response) {
-      this.jcontent = response
+      this.jcontent = response.message
       console.log(response);
     })
     .catch(function (error) {
