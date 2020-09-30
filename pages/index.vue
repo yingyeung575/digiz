@@ -1,12 +1,7 @@
 <template>
   <div class="container">
-    <h1>Sign Up for Premium Corgi Content</h1>
 
-    <div class="user-info">
-      <button id="left">Log In</button>
-      <button id="right">Sign Up</button>
-      <div data-netlify-identity-menu></div>
-    </div>
+    <jheader />
 
     <div class="corgi-content">
       <div class="content">
@@ -26,14 +21,12 @@
 </template>
 
 <script>
-import netlifyIdentity from "netlify-identity-widget";
-import { mapActions, mapState } from "vuex";
-
-if (process.client) {
-    netlifyIdentity.init()
-}
+import jheader from '~/components/jheader.vue'
 
 export default {
- 
+  components: {
+    jheader
+  },
 }
+
 </script>
