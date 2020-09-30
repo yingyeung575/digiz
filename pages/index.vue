@@ -24,8 +24,11 @@ export default {
   },
   async mounted(){
 
-      let jsonstring = '{"type":"jack","age":"18"}'
-      this.jcontent = await this.$axios.$post('https://digiz.netlify.app/.netlify/functions/get-protected-content',jsonstring) 
+      let temp = {
+        type: 'jack',
+        age: 18
+      }
+      this.jcontent = await this.$axios.$post('https://digiz.netlify.app/.netlify/functions/get-protected-content',temp) 
   },
 
 }

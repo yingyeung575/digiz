@@ -42,10 +42,10 @@ const content = {
   
   exports.handler = async (event) => {
     
-    console.log(JSON.parse(event.body));
+    let temp = JSON.parse(event.body);
 
     return {
       statusCode: 200,
-      body: JSON.stringify(JSON.parse(event.body)),
+      body: JSON.stringify(temp.type),
     };
   };
