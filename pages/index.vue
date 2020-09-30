@@ -6,7 +6,7 @@
     <div class="corgi-content">
       <div class="content">
         <h2>Free Content</h2>
-        <div class="free"></div>
+        {{ jcontent }}
       </div>
       <div class="content">
         <h2>Pro Content</h2>
@@ -27,6 +27,29 @@ export default {
   components: {
     jheader
   },
+  data(){
+    return{
+     
+       loading: true,
+    }
+  },
+  async created(){
+
+    this.jcontent = await this.$axios.$post('https://digiz.netlify.app/.netlify/functions/get-protected-content',
+    {
+      type: 'jack'
+    }) 
+    .then(function (response) {
+      this.loading = false
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+    
+
+  },
+
 }
 
 </script>
