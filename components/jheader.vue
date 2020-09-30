@@ -31,7 +31,7 @@ export default {
   computed: mapState({
     isLoggedIn: state => state.user.currentUser
   }),
-  created() {
+  mounted() {
     this.setUser(netlifyIdentity.currentUser())
   },
   methods: {
