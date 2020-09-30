@@ -31,7 +31,7 @@ export default {
           type: 'jack',
           age: 18
         }
-        this.jcontent = await this.$axios.$post('http://localhost:8888/.netlify/functions/get-protected-content',temp,{
+        this.jcontent = await this.$axios.$post('https://digiz.netlify.app/.netlify/functions/get-protected-content',temp,{
               headers:{
                       Authorization: 'Bearer '+this.$store.state.user.currentUser.token.access_token
               }
