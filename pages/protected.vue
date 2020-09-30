@@ -6,7 +6,6 @@
         Protected Page Content
     </h1>
      
-      
  
   </div>
 </template>
@@ -20,6 +19,7 @@ export default {
   },
 
   middleware ({ store, redirect }) {
+    
     if (!store.state.user.currentUser) {
       return redirect('/');
     }
