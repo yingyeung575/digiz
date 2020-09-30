@@ -30,7 +30,6 @@ export default {
   data(){
     return{
      
-       loading: true,
     }
   },
   async created(){
@@ -40,7 +39,6 @@ export default {
       type: 'jack'
     }) 
     .then(function (response) {
-      this.loading = false
       console.log(response);
     })
     .catch(function (error) {
