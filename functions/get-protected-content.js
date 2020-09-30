@@ -41,11 +41,11 @@ const content = {
   };
   
   exports.handler = async (event) => {
-    const { type } = JSON.parse(event.body);
+    
+    console.log(JSON.parse(event.body));
 
-  
     return {
       statusCode: 200,
-      body: JSON.stringify(content[type]),
+      body: JSON.stringify(JSON.parse(event.body)),
     };
   };

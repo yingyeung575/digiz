@@ -1,22 +1,11 @@
 <template>
-  <div class="container">
+  <div>
 
     <jheader />
-
-    <div class="corgi-content">
-      <div class="content">
-        <h2>Free Content</h2>
-        {{ jcontent }}
-      </div>
-      <div class="content">
-        <h2>Pro Content</h2>
-        <div class="pro"></div>
-      </div>
-      <div class="content">
-        <h2>Premium Content</h2>
-        <div class="premium"></div>
-      </div>
-    </div>
+    <h2>Content</h2>
+    {{ jcontent }}
+      
+    
   </div>
 </template>
 
@@ -29,24 +18,14 @@ export default {
   },
   data(){
     return{
-      jcontent: 'default'
+      jcontent: 'default',
+      
     }
   },
   async mounted(){
 
-    await this.$axios.$post('https://digiz.netlify.app/.netlify/functions/get-protected-content',
-    {
-      type: "jack"
-    }) 
-    .then(function (response) {
-      this.jcontent = response.message
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-    
-
+      let jsonstring = '{"type":"jack","age":"18"}'
+      this.jcontent = await this.$axios.$post('http://localhost:8888/.netlify/functions/get-protected-content',jsonstring) 
   },
 
 }
