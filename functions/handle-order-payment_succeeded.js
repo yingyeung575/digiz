@@ -15,6 +15,8 @@ exports.handler = async ({ body, headers }, context) => {
     console.log(stripeEvent.type);
     console.log('data');
     console.log( stripeEvent.data.object);
+    console.log('context');
+    console.log(context.clientContext);
 
     // bail if this is not a subscription update event
     if (stripeEvent.type !== 'payment_intent.succeeded') return;
