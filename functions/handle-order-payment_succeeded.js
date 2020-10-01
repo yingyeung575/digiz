@@ -1,0 +1,30 @@
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const fetch = require('node-fetch');
+const { faunaFetch } = require('./utils/fauna');
+
+exports.handler = async ({ body, headers }, context) => {
+  try {
+    // make sure this event was sent legitimately.
+    const stripeEvent = stripe.webhooks.constructEvent(
+      body,
+      headers['stripe-signature'],
+      process.env.STRIPE_WEBHOOK_SECRET_SUCCED_PAYMENT,
+    );
+
+    // bail if this is not a subscription update event
+    if (stripeEvent.type !== 'order.payment_succeeded') return;
+ 
+    console.log(stripeEvent);
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ received: true }),
+    };
+
+  } catch (err) {
+    return {
+      statusCode: 400,
+      body: `Webhook Error: ${err.message}`,
+    };
+  }
+};
