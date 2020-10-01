@@ -16,7 +16,7 @@ export default {
   css: [
   ],
   script: [
-    { src: 'https://js.stripe.com/v3' }
+    { hid: 'stripe', src: 'https://js.stripe.com/v3/', defer: true }
   ],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
