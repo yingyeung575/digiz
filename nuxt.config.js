@@ -15,7 +15,6 @@ export default {
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
   ],
-  ,
   script: [
     { src: 'https://js.stripe.com/v3' }
   ],
