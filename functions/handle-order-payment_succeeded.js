@@ -11,15 +11,33 @@ exports.handler = async ({ body, headers }, context) => {
       process.env.STRIPE_WEBHOOK_SECRET_SUCCED_PAYMENT,
     );
 
-    console.log('type');
-    console.log(stripeEvent.type);
-    console.log('object');
+ 
     console.log( stripeEvent.data.object);
 
     // bail if this is not a subscription update event
     if (stripeEvent.type !== 'payment_intent.succeeded') return;
- 
 
+    console.log( 'context');
+    console.log( context);
+
+    // store the Netlify and Stripe IDs in Fauna
+    /*
+    await faunaFetch({
+        query: `
+        mutation ($netlifyID: ID!, $stripeID: ID!) {
+            createUser(data: { netlifyID: $netlifyID, stripeID: $stripeID }) {
+            netlifyID
+            stripeID
+            }
+        }
+        `,
+        variables: {
+        netlifyID: user.id,
+        stripeID: stripeEvent.data.object.customer,
+        },
+    });
+ 
+    */
    
 
     return {
