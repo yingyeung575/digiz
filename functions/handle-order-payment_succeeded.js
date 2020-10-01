@@ -11,10 +11,16 @@ exports.handler = async ({ body, headers }, context) => {
       process.env.STRIPE_WEBHOOK_SECRET_SUCCED_PAYMENT,
     );
 
+    console.log('type');
+    console.log(stripeEvent.type);
+    console.log('object');
+    console.log( stripeEvent.data.object);
+
     // bail if this is not a subscription update event
     if (stripeEvent.type !== 'payment_intent.succeeded') return;
  
-    console.log(stripeEvent);
+
+   
 
     return {
       statusCode: 200,
