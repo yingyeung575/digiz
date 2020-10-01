@@ -62,7 +62,7 @@ export default {
     },
     async checkout(){
         
-          await this.$axios.$post('https://digiz.netlify.app/.netlify/functions/create-checkout',
+          const r = await this.$axios.$post('https://digiz.netlify.app/.netlify/functions/create-checkout',
           {
 
           },{
@@ -70,25 +70,20 @@ export default {
                        
                 }
           })
-          .then( r => {
-               const response = r
-          })
-          .catch( err => {
-                alert('err!')
-                console.log(err)
-          })
-          console.log('response')
-          console.log(response)
+         
 
-          const stripe = this.$stripe(response.publishableKey);
+            console.log(r)
+
+            const stripe = this.$stripe(r.publishableKey);
           
-          const { error } = await stripe.redirectToCheckout({
-            sessionId: response.sessionId,
-          });
+            await stripe.redirectToCheckout({
+              sessionId: r.sessionId,
+            });
 
-          if (error) {
-            console.error(error);
-          }
+            if (error) {
+              console.error(error);
+            }
+
       
     }
   }
