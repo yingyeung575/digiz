@@ -80,7 +80,8 @@ export default {
 
           console.log(response)
 
-          const stripe = Stripe(response.publishableKey);
+          const stripe = this.$stripe(response.publishableKey);
+          
           const { error } = await stripe.redirectToCheckout({
             sessionId: response.sessionId,
           });
