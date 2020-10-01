@@ -6,6 +6,9 @@
     <h2>Content</h2>
     {{ jcontent }}
 
+    <h2>Test one time payment</h2>
+    <button @click='checkout'>Pay</button>
+
     
   </div>
 </template>
@@ -56,6 +59,36 @@ export default {
                 console.log(err)
           })
       }
+    },
+    async checkout(){
+        
+          const response = await this.$axios.$post('https://digiz.netlify.app/.netlify/functions/create-checkout',
+          {
+
+          },{
+                headers:{
+                       
+                }
+          })
+          .then( r => {
+               console.log(r)
+          })
+          .catch( err => {
+                alert('err!')
+                console.log(err)
+          })
+
+          console.log(response)
+
+          const stripe = Stripe(response.publishableKey);
+          const { error } = await stripe.redirectToCheckout({
+            sessionId: response.sessionId,
+          });
+
+          if (error) {
+            console.error(error);
+          }
+      
     }
   }
 
