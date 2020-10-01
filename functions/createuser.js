@@ -14,12 +14,9 @@ exports.handler = async ({ body, headers }, context) => {
         Authorization: `Bearer ${identity.token}`,
       },
       body: JSON.stringify({
-        email: 'info@burdstrom.com',
+        email: 'info2@burdstrom.com',
         name: 'jack chan',
-        password: '123123',
-        app_metadata: {
-          roles: 'basic',
-        },
+        password: '123123'
       }),
     }).then( r => {
                 console.log(r)
