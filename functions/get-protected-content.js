@@ -14,23 +14,23 @@
         body: JSON.stringify('admin'),
     };
   }
-  else if (roles[0] == 'prod_I7KwO1xIk9FxFB') {
+  else if (roles[0] == 'prod_I7WwTZ2YmLc0sm') {
     return {
         statusCode: 200,
-        body: JSON.stringify('Pro'),
+        body: JSON.stringify('Pro - prod_I7WwTZ2YmLc0sm'),
     };
   }
   else if (roles[0] == 'prod_I7KxTtCzcWgIum') {
     return {
         statusCode: 200,
-        body: JSON.stringify('basic'),
+        body: JSON.stringify('basic - prod_I7KxTtCzcWgIum'),
     };
   }
 
     return {
       statusCode: 200,
      // body: JSON.stringify(temp.type),
-      body: JSON.stringify('nocontent'),
+      body: JSON.stringify('no plan'),
     };
   };
 
