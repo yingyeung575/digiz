@@ -11,16 +11,13 @@ exports.handler = async (event) => {
     billing_address_collection: 'auto',
     success_url: `${process.env.URL}/success`,
     cancel_url: process.env.URL,
+    mode: 'subscription',
     line_items: [
       {
-        name: 'Test name',
-        description: 'Test description',
-     //   images: [product.image],
-        amount: 100,
-        currency: 'USD',
+        price: 'price_1HXHsiFlxrdsMvODgPb1Iw8l',
         quantity: 1,
       },
-    ],
+    ], 
   });
 
   console.log(session);
