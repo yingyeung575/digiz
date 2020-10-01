@@ -21,6 +21,7 @@ exports.handler = async ({ body, headers }, context) => {
     // bail if this is not a subscription update event
     if (stripeEvent.type !== 'payment_intent.succeeded') return;
  
+ 
 
    
 
