@@ -14,10 +14,10 @@
         body: JSON.stringify('admin'),
     };
   }
-  else if (roles[0] == 'pro') {
+  else if (roles[0] == 'Pro') {
     return {
         statusCode: 200,
-        body: JSON.stringify('pro'),
+        body: JSON.stringify('Pro'),
     };
   }
   else if (roles[0] == 'basic') {
