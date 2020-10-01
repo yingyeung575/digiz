@@ -74,7 +74,7 @@ export default {
 
             console.log(r)
 
-            const stripe = this.$stripe(r.publishableKey);
+            const stripe = this.$stripe.import();
           
             await stripe.redirectToCheckout({
               sessionId: r.sessionId,
