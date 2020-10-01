@@ -14,7 +14,7 @@ exports.handler = async (event) => {
     mode: 'subscription',
     line_items: [
       {
-        price: 'price_1HXHsiFlxrdsMvODgPb1Iw8l',
+        price: 'price_1HX6GnFlxrdsMvOD9bUgGlXy',
         quantity: 1,
       },
     ], 
