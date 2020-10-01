@@ -62,7 +62,7 @@ export default {
     },
     async checkout(){
         
-          const response = await this.$axios.$post('https://digiz.netlify.app/.netlify/functions/create-checkout',
+          await this.$axios.$post('https://digiz.netlify.app/.netlify/functions/create-checkout',
           {
 
           },{
@@ -71,13 +71,13 @@ export default {
                 }
           })
           .then( r => {
-               console.log(r)
+               const response = r
           })
           .catch( err => {
                 alert('err!')
                 console.log(err)
           })
-
+          console.log('response')
           console.log(response)
 
           const stripe = this.$stripe(response.publishableKey);
