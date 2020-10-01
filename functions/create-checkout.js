@@ -16,7 +16,7 @@ exports.handler = async (event) => {
         name: 'Test name',
         description: 'Test description',
      //   images: [product.image],
-        amount: 1,
+        amount: 100,
         currency: 'USD',
         quantity: 1,
       },
