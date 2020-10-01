@@ -15,6 +15,7 @@ exports.handler = async ({ body, headers }, context) => {
     if (stripeEvent.type !== 'customer.subscription.updated') return;
 
     const subscription = stripeEvent.data.object;
+    console.log(subscription);
 
     const result = await faunaFetch({
       query: `
@@ -33,7 +34,9 @@ exports.handler = async ({ body, headers }, context) => {
 
     // take the first word of the plan name and use it as the role
     const plan = subscription.items.data[0].plan.nickname;
-    const role = plan.split(' ')[0].toLowerCase();
+    const role = plan;
+
+    console.log(plan);
 
     // send a call to the Netlify Identity admin API to update the user role
     const { identity } = context.clientContext;
