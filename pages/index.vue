@@ -110,7 +110,10 @@ export default {
           .then((response) => {
               this.checkout()
           })
-          .catch((error) => console.log("It's an error", error));
+          .catch((error) => {
+            console.log("It's an error", error)
+            this.checkout()
+          });
 
       
     }
