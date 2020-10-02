@@ -23,6 +23,8 @@ exports.handler = async ({ body, headers }, context) => {
 
       //db
 
+      console.log('why');
+
       const result = await faunaFetch({
         query: `
             query ($email: String!) {
@@ -33,9 +35,12 @@ exports.handler = async ({ body, headers }, context) => {
             }
           `,
         variables: {
-          email: context.clientContext.receipt_email,
+          email: stripeEvent.data.object.receipt_email,
         },
       });
+
+      console.log('result');
+      console.log(result);
       
       const netlifyID = result.data.getUserByEmail.netlifyID;
       const entryID = result.data.getUserByEmail._id;
@@ -62,8 +67,8 @@ exports.handler = async ({ body, headers }, context) => {
         `,
         variables: {
           netlifyID: netlifyID,
-          stripeID: context.clientContext.customer,
-          email: context.clientContext.receipt_email,
+          stripeID: stripeEvent.data.object.customer,
+          email: stripeEvent.data.object.receipt_email,
           entryID: entryID
         },
       });
