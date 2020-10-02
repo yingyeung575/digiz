@@ -4,26 +4,53 @@ const { faunaFetch } = require('./utils/fauna');
 exports.handler = async (event) => {
  // const { user } = JSON.parse(event.body);
 
-  // store the Netlify and Stripe IDs in Fauna
-  await faunaFetch({
-    query: `
-      mutation ($netlifyID: ID!, $stripeID: ID!, $email: String!) {
-        createUser(data: { netlifyID: $netlifyID, stripeID: $stripeID, email: $email }) {
+ const result = await faunaFetch({
+  query: `
+      query ($email: String!) {
+        getUserByEmail(email: $email) {
+          _id
           netlifyID
-          stripeID
-          email
         }
       }
     `,
-    variables: {
-      netlifyID: 'netidfuck',
-      stripeID: 'stripid',
-      email: 'someemail'
-    },
-  })
-  .then( r => console.log(r))
-  .error( r => console.log(r))
-  ;
+  variables: {
+    email: 'test2@mtache.com',
+  },
+});
+
+const netlifyID = result.data.getUserByEmail.netlifyID;
+const entryID = result.data.getUserByEmail._id;
+
+console.log('netlifyID');
+console.log(netlifyID);
+console.log(entryID);
+
+
+
+await faunaFetch({
+  query: `
+    mutation ($netlifyID: ID!, $stripeID: ID!, $email: String!, $entryID: ID!) {
+      updateUser(
+        id: $entryID
+        data: { 
+          netlifyID: $netlifyID, stripeID: $stripeID, email: $email 
+        }) {
+        netlifyID
+        stripeID
+        email
+      }
+    }
+  `,
+  variables: {
+    netlifyID: netlifyID,
+    stripeID: 'newstripeid',
+    email: 'test2@mtache.com',
+    entryID: entryID
+  },
+});
+
+
+
 
   return {
     statusCode: 200,

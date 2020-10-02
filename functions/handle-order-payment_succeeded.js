@@ -11,6 +11,9 @@ exports.handler = async ({ body, headers }, context) => {
       process.env.STRIPE_WEBHOOK_SECRET_SUCCED_PAYMENT,
     );
 
+    // bail if this is not a subscription update event
+    if (stripeEvent.type !== 'payment_intent.succeeded') return;
+
     console.log('type');
     console.log(stripeEvent.type);
     console.log('data');
@@ -18,25 +21,54 @@ exports.handler = async ({ body, headers }, context) => {
     console.log('context');
     console.log(context.clientContext);
 
-    // bail if this is not a subscription update event
-    if (stripeEvent.type !== 'payment_intent.succeeded') return;
+      //db
 
-    const result = await faunaFetch({
-      query: `
-          query ($email: String!) {
-            getUserByEmail(email: $email) {
+      const result = await faunaFetch({
+        query: `
+            query ($email: String!) {
+              getUserByEmail(email: $email) {
+                _id
+                netlifyID
+              }
+            }
+          `,
+        variables: {
+          email: context.clientContext.receipt_email,
+        },
+      });
+      
+      const netlifyID = result.data.getUserByEmail.netlifyID;
+      const entryID = result.data.getUserByEmail._id;
+      
+      console.log('netlifyID');
+      console.log(netlifyID);
+      console.log(entryID);
+      
+      
+      
+      await faunaFetch({
+        query: `
+          mutation ($netlifyID: ID!, $stripeID: ID!, $email: String!, $entryID: ID!) {
+            updateUser(
+              id: $entryID
+              data: { 
+                netlifyID: $netlifyID, stripeID: $stripeID, email: $email 
+              }) {
               netlifyID
+              stripeID
+              email
             }
           }
         `,
-      variables: {
-        email: context.clientContext.receipt_email,
-      },
-    });
-
-    const { netlifyID } = result.data.getUserByEmail;
-    console.log('netlifyID');
-    console.log(netlifyID);
+        variables: {
+          netlifyID: netlifyID,
+          stripeID: context.clientContext.customer,
+          email: context.clientContext.receipt_email,
+          entryID: entryID
+        },
+      });
+  
+      //db
  
     
 
