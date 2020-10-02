@@ -22,6 +22,7 @@ exports.handler = async ({ body, headers }, context) => {
     if (stripeEvent.type !== 'payment_intent.succeeded') return;
  
  
+    
 
    
 
