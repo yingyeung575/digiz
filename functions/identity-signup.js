@@ -34,6 +34,6 @@ exports.handler = async (event) => {
 
   return {
     statusCode: 200,
-    body: 'ok',
+    body: JSON.stringify({ received: true }),
   };
 };
