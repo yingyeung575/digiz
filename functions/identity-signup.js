@@ -30,10 +30,7 @@ exports.handler = async (event) => {
       stripeID: 'stripid',
       email: user.email
     },
-  })
-  .then( r => console.log(r))
-  .error( r => console.log(r))
-  ;
+  });
 
   return {
     statusCode: 200,
