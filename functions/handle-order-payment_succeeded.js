@@ -30,7 +30,7 @@ exports.handler = async ({ body, headers }, context) => {
           }
         `,
       variables: {
-        email: context.clientContext.email,
+        email: context.clientContext.receipt_email,
       },
     });
 
