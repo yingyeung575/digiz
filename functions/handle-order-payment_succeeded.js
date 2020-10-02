@@ -20,7 +20,23 @@ exports.handler = async ({ body, headers }, context) => {
 
     // bail if this is not a subscription update event
     if (stripeEvent.type !== 'payment_intent.succeeded') return;
- 
+
+    const result = await faunaFetch({
+      query: `
+          query ($email: String!) {
+            getUserByEmail(email: $email) {
+              netlifyID
+            }
+          }
+        `,
+      variables: {
+        email: context.clientContext.email,
+      },
+    });
+
+    const { netlifyID } = result.data.getUserByEmail;
+    console.log('netlifyID');
+    console.log(netlifyID);
  
     
 
