@@ -16,6 +16,7 @@
       Password: <input type='password' v-model='password'>
       <button @click='gsubmit'>Submit</button>
 
+
     
   </div>
 </template>
@@ -40,7 +41,8 @@ export default {
       jcontent: 'default',
       name: '',
       email: '',
-      password: ''
+      password: '',
+
   
       
     }

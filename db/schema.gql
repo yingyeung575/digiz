@@ -1,12 +1,10 @@
-type User {
-  netlifyID: ID!
-  stripeID: ID!
-  email: String!
+type Course {
+  title: String!
+  tag: String
+  video: String
+  content: String
 }
 
 type Query {
-  getUserByNetlifyID(netlifyID: ID!): User!
-  getUserByStripeID(stripeID: ID!): User!
-  getUserByEmail(email: String!): User!
-  allUser: [User!]
+  allCourse: [Course!]
 }
