@@ -15,7 +15,7 @@ exports.handler = async (event) => {
     customer_email: email, 
     line_items: [
       {
-        price: 'price_1HX6GnFlxrdsMvOD9bUgGlXy',
+        price: 'price_1HeCtTLbKaMxF0zWvNuhNTbK',
         quantity: 1,
       },
     ], 

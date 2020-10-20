@@ -14,18 +14,18 @@
         body: JSON.stringify('admin'),
     };
   }
-  else if (roles[0] == 'prod_I7WwTZ2YmLc0sm') {
+  else if (roles[0] == 'prod_IEgFNo0gAOx3jH') {
     return {
         statusCode: 200,
-        body: JSON.stringify('Pro - prod_I7WwTZ2YmLc0sm'),
+        body: JSON.stringify('Pro Test - prod_IEgFNo0gAOx3jH'),
     };
   }
-  else if (roles[0] == 'prod_I7KxTtCzcWgIum') {
+ /* else if (roles[0] == 'prod_I7KxTtCzcWgIum') {
     return {
         statusCode: 200,
         body: JSON.stringify('basic - prod_I7KxTtCzcWgIum'),
     };
-  }
+  } */
 
     return {
       statusCode: 200,
