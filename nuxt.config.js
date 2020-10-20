@@ -33,7 +33,7 @@ export default {
     'nuxt-stripe-module'
   ],
   stripe: {
-    publishableKey: 'pk_live_cdR5HaNggtzQM0dO9xeOrXFr00B72AcM9l',
+    publishableKey: 'pk_live_51HeCeOLbKaMxF0zWCT5XZHJRjVFkY0ggixasXbpE0n6otywrxFjWIKif8uGo5QJlWzPCLE7kkJryI5vTOhOKuQgJ00i8ca40EW',
   },
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
