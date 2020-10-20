@@ -17,7 +17,7 @@ exports.handler = async ({ body, headers }, context) => {
     console.log('type');
     console.log(stripeEvent.type);
     console.log('data');
-    console.log( stripeEvent.data.object);
+    console.log( stripeEvent.data.object.charges.data[0]);
     console.log('context');
     console.log(context.clientContext); 
 
@@ -33,7 +33,7 @@ exports.handler = async ({ body, headers }, context) => {
             }
           `,
         variables: {
-          email: stripeEvent.data.object.charges.data.billing_details.email,
+          email: stripeEvent.data.object.charges.data[0].billing_details.email,
         },
       });
 
