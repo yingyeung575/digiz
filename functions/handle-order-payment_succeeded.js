@@ -14,12 +14,12 @@ exports.handler = async ({ body, headers }, context) => {
     // bail if this is not a subscription update event
     if (stripeEvent.type !== 'payment_intent.succeeded') return;
 
-  /*  console.log('type');
+    console.log('type');
     console.log(stripeEvent.type);
     console.log('data');
     console.log( stripeEvent.data.object);
     console.log('context');
-    console.log(context.clientContext); */
+    console.log(context.clientContext); 
 
       //db
 
@@ -33,7 +33,7 @@ exports.handler = async ({ body, headers }, context) => {
             }
           `,
         variables: {
-          email: stripeEvent.data.object.billing_details.email,
+          email: stripeEvent.data.object.charges.data.billing_details.email,
         },
       });
 
