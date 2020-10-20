@@ -14,16 +14,14 @@ exports.handler = async ({ body, headers }, context) => {
     // bail if this is not a subscription update event
     if (stripeEvent.type !== 'payment_intent.succeeded') return;
 
-    console.log('type');
+  /*  console.log('type');
     console.log(stripeEvent.type);
     console.log('data');
     console.log( stripeEvent.data.object);
     console.log('context');
-    console.log(context.clientContext);
+    console.log(context.clientContext); */
 
       //db
-
-      console.log('why');
 
       const result = await faunaFetch({
         query: `
@@ -35,7 +33,7 @@ exports.handler = async ({ body, headers }, context) => {
             }
           `,
         variables: {
-          email: stripeEvent.data.object.receipt_email,
+          email: stripeEvent.data.object.billing_details.email,
         },
       });
 
@@ -75,7 +73,7 @@ exports.handler = async ({ body, headers }, context) => {
   
       //db
 
-      const role = 'Pro';
+      const role = 'prod_IEgFNo0gAOx3jH';
 
       // send a call to the Netlify Identity admin API to update the user role
       const { identity } = context.clientContext;
